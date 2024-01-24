@@ -1,0 +1,20 @@
+:root {
+    --menu-width: 37.5em; /* Width of menu */
+    --items: 4; /* Number of items you have */
+    --item-width: calc(var(--menu-width) / var(--items));
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body{
+    background: linear-gradient(45deg, #102eff, #d2379b);
+    font-family: "Roboto", sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    width: 100vw;
+}
