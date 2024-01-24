@@ -2,4 +2,11 @@
 
 .container-wrapper{ 
     margin-top: 5rem;
+    height: 100vh;
+    height: calc(100vh - 3em - 10.7rem);
+    overflow-y: scroll;
+}
+
+.container-wrapper::-webkit-scrollbar {
+    display: none;
 }

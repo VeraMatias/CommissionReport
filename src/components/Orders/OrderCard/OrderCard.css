@@ -1,0 +1,64 @@
+@import url('../../../styles/styles.css');
+
+
+.order-card {
+    overflow: hidden;
+    border-radius: 28px;
+    width: 60%;
+}
+
+.order-card-content {
+    display: block;
+    padding: 20px 20px;
+    background-color: #121212;
+    position: relative;
+}
+
+.card-title {
+    margin: 0 0 25px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #FFF;
+}
+
+.cart-info{
+    font-size: 16px;
+    color: #FFF;
+    display: flex;
+    justify-content:space-between
+    
+}
+
+.item-value {
+    font-weight: bold;
+    color: #886ab5;
+}
+
+.color-status {
+    height: 128px;
+    width: 128px;
+    z-index: 1;
+    position: absolute;
+    top: -75px;
+    right: -75px;
+    border-radius: 50%;
+    transition: all .5s ease;
+}
+
+.paid{
+    background-color: #3ecd5e;
+}
+
+.unpaid{
+    background-color: #f9b234;
+}
+
+.edit{
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.edit:hover{
+    color: #886ab5;
+}
