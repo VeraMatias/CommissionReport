@@ -1,6 +1,6 @@
 import './Navbar.css'
 
-import MenuItem from '../MenuItem/MenuItem'
+import MenuItem from './MenuItem/MenuItem'
 
 const Navbar = () =>{
 

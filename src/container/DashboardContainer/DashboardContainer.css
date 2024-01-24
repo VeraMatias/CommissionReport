@@ -1,0 +1,8 @@
+@import url('../../styles/styles.css');
+
+.container-dashboard {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
