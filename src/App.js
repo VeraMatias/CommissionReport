@@ -6,6 +6,7 @@ import Navbar from './components/Navbar/Navbar';
 import Wrapper from './container/Wrapper/Wrapper';
 import DashboardContainer from './container/DashboardContainer/DashboardContainer';
 import OrdersContainer from './container/OrdersContainer/OrdersContainer';
+import PaycheckContainer from './container/PaycheckContainer/PaycheckContainer';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path = "/" element={<Wrapper children = {<DashboardContainer/>} />}/>
         <Route path = "/dashboard" element={<Wrapper children = {<DashboardContainer/>} />}/>
         <Route path = "/orders" element={<Wrapper children = {<OrdersContainer/>} />}/>
+        <Route path = "/paycheck" element={<Wrapper children = {<PaycheckContainer/>} />}/>
       </Routes>
     </BrowserRouter>
     </>
