@@ -19,7 +19,7 @@ const PaycheckContainer =  () => {
                     <PaycheckCard month={'02'} year={'2023'} amount={'$ 800.000,00'}/>
                 </div>
             </div>
-            <ButtonNew/>
+            <ButtonNew url={'/paycheck/create'}/>
         </>
     )
 }

@@ -1,11 +1,15 @@
+import { Link } from 'react-router-dom'
 import './ButtonNew.css'
 
-const ButtonNew = () =>{
+const ButtonNew = ({url}) =>{
 
 return (
-    <button class="button-new">
-        <i class='bx bx-plus button-new-symbol'></i>
-    </button>
+    <Link to={url}> 
+        <button className="button-new">
+            <i className='bx bx-plus button-new-symbol'></i>
+        </button>
+    </Link>
+
 )
 }
 
