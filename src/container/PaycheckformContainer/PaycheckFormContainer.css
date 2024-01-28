@@ -1,0 +1,7 @@
+@import url('../../styles/styles.css');
+
+.paycheck-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

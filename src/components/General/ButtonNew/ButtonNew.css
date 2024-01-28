@@ -1,0 +1,39 @@
+@import url('../../../styles/styles.css');
+
+.button-new {
+	width: 60px;
+	height: 60px;
+	cursor: pointer;
+	background-image: linear-gradient(315deg, #5de6de 0%, #b58ecc 74%);
+	border: none;
+	border-radius: 50%;
+	transition: 200ms;
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+.button-new:before {
+	content: 'Agregar';
+	position: absolute;
+	transform: translateX(-15%) translateY(55px);
+	font-size: 15px;
+	transition: 200ms;
+	color: transparent;
+	font-weight: bold;
+}
+
+.button-new:hover {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+	width: 65px;
+	height: 65px;
+}
+
+.button-new:hover::before {
+	color: #fff;
+}
+
+.button-new-symbol{
+    font-weight: 200;
+    font-size: 40px;
+}
