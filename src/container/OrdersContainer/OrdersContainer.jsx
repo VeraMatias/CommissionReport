@@ -2,18 +2,33 @@ import './OrdersContainer.css'
 
 import OrderCard from '../../components/Orders/OrderCard/OrderCard'
 import ButtonNew from '../../components/General/ButtonNew/ButtonNew'
+import { useEffect, useState } from 'react'
+import { useFirestore } from '../../hooks/useFirestore'
 
 const OrdersContainer =  () => {
 
-    return(
+    const [orders, setOrders] = useState()
+    const { getCollection } = useFirestore()
+
+    useEffect(() =>{
+        getCollection('orders',setOrders)
+    },[])
+
+    return( 
     <>
         <div className="container-orders">
-            <OrderCard paid={true} CPQ={'CPQ-V-4458'} invoice={'5-2026'} amount={'12.000.000,00'} IVA={'10.5'} commission={'75.000,00'}/>
-            <OrderCard paid={true} CPQ={'CPQ-V-4458'} invoice={'5-2026'} amount={'12.000.000,00'} IVA={'10.5'} commission={'75.000,00'}/>
-            <OrderCard paid={false} CPQ={'CPQ-V-4458'} invoice={'5-2026'} amount={'12.000.000,00'} IVA={'10.5'} commission={'75.000,00'}/>
-            <OrderCard paid={true} CPQ={'CPQ-V-4458'} invoice={'5-2026'} amount={'12.000.000,00'} IVA={'10.5'} commission={'75.000,00'}/>
-            <OrderCard paid={true} CPQ={'CPQ-V-4458'} invoice={'5-2026'} amount={'12.000.000,00'} IVA={'10.5'} commission={'75.000,00'}/>
-            <OrderCard paid={true} CPQ={'CPQ-V-4458'} invoice={'5-2026'} amount={'12.000.000,00'} IVA={'10.5'} commission={'75.000,00'}/>
+            {orders ? 
+            orders.map(order =>(
+            <OrderCard 
+            key={order.id} 
+            paid={order.paid} 
+            CPQ={order.cpq} 
+            invoice={order.invoice} 
+            amount={order.amount} 
+            IVA={order.IVA} 
+            commission={order.commission}/>))
+            : 
+            null}
         </div>
         <ButtonNew url={'/orders/create'}/>
     </>

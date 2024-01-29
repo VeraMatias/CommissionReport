@@ -1,6 +1,9 @@
+import { useGeneral } from '../../../hooks/useGeneral'
 import './OrderCard.css'
 
 const OrderCard = ({paid, CPQ, invoice, amount, IVA, commission}) =>{
+
+    const {formattedNumber} = useGeneral()
 
 return (
     <div className="order-card">
@@ -15,17 +18,17 @@ return (
 
                 <div className="cart-info-item">
                     <span>Monto:</span>
-                    <span className="item-value"> $ {amount}</span>
+                    <span className="item-value"> {formattedNumber(amount)}</span>
                 </div>
 
                 <div className="cart-info-item">
                     <span>IVA:</span>
-                    <span className="item-value"> {IVA}</span>
+                    <span className="item-value"> % {IVA}</span>
                 </div>
 
                 <div className="cart-info-item">
                     <span>Comisión:</span>
-                    <span className="item-value"> $ {commission}</span>
+                    <span className="item-value"> %{commission} - {formattedNumber(((amount/(IVA/100+1))*commission/100))}</span>
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc, getDocs, query, where, doc, getDoc} from "firebase/firestore"
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc} from "firebase/firestore"
 
 export const useFirestore = () =>{
 
@@ -24,11 +24,15 @@ export const useFirestore = () =>{
         updateDoc(orderDoc, {balance: 150000})
     }
 
-    const getCollection = () =>{
+    const getCollection = (nameCollection, setItems) =>{
         const db = getFirestore();
-        const itemsCollection = collection(db,'orders');
+        const itemsCollection = collection(db,nameCollection);
         getDocs(itemsCollection).then((snapshot) =>{
-        setOrder(snapshot.docs.map((doc) => ({id: doc.id, ...doc.data()})))
+            snapshot === 0 ?
+                setItems({})
+            :
+                setItems(snapshot.docs.map((doc) => (
+                {id: doc.id, ...doc.data()})))
         })
     }
 
