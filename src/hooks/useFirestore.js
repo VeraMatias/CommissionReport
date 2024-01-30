@@ -2,19 +2,16 @@ import { getFirestore, collection, addDoc, getDocs, doc, updateDoc} from "fireba
 
 export const useFirestore = () =>{
 
-    const sendOrder = () => {
-        const order = {
-            IVA: 21,
-            amount: 5000,
-            commission: 5,
-            cpq: 'CPQ-V-1234',
-            invoice: '5-1017',
-            reporterd: false
+    const sendDocument = (nameCollection, data) => {
+        const document = {
+            ...data
         }
 
         const db = getFirestore();
-        const ordersCollection = collection(db, 'orders')
-        addDoc(ordersCollection, order).then(({id}) => console.log(id))
+        const collectionFirestore = collection(db, nameCollection)
+        addDoc(collectionFirestore, document)
+            .then((response) => console.log('Documento añadido con ID: ', response.id))
+            .catch((error) => console.error('Error al agregar documento: ', error));
     }
 
     const updateOrder = () => {
@@ -36,5 +33,5 @@ export const useFirestore = () =>{
         })
     }
 
-    return {sendOrder, updateOrder, getCollection}
+    return {sendDocument, updateOrder, getCollection}
 }

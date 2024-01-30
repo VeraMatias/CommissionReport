@@ -8,7 +8,7 @@ import DashboardContainer from './container/DashboardContainer/DashboardContaine
 import OrdersContainer from './container/OrdersContainer/OrdersContainer';
 import PaycheckContainer from './container/PaycheckContainer/PaycheckContainer';
 import OrderFormContainer from './container/OrderFormContainer/OrderFormContainer';
-import PaycheckFormContainer from './container/PaycheckformContainer/PaycheckFormContainer';
+import PaycheckFormContainer from './container/PaycheckFormContainer/PaycheckFormContainer';
 
 function App() {
   return (
