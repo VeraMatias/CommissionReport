@@ -9,8 +9,14 @@ export const useForm = () =>{
     const { sendDocument } = useFirestore()
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        if ( name === 'date'){
+        const { name, value, type, checked } = e.target;
+
+        if (type === 'checkbox') {
+            setDataForm({
+            ...dataForm,
+            [name]: checked,
+            });
+        } else if ( name === 'date'){
             const dateValue = new Date(value);
             const timestamp = Timestamp.fromDate(dateValue);
             setDataForm({
@@ -19,7 +25,7 @@ export const useForm = () =>{
             });
         }
         else{
-            if (name === 'amount'){
+            if (name === 'amount' || name === 'iva' || name === 'commission'){
                 setDataForm({
                     ...dataForm,
                     [name]: parseInt(value),
@@ -36,7 +42,6 @@ export const useForm = () =>{
 
     const handleCreate = (nameCollection) => (e) => {
         e.preventDefault();
-        console.log('Datos del formulario:', dataForm.date);
         sendDocument(nameCollection, dataForm)
         window.history.back()
     };
