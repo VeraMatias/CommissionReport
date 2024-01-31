@@ -17,7 +17,7 @@ return (
             <input placeholder="Monto" class="input-field" type="number" name='amount' onChange={handleInputChange}></input>
         </div>
         <div class="field">
-            <input placeholder="IVA" class="input-field" type="number" name='IVA' onChange={handleInputChange}></input>
+            <input placeholder="IVA" class="input-field" type="text" name='IVA' onChange={handleInputChange}></input>
         </div>
         <div class="field">
             <input placeholder="% de Comisión" class="input-field" type="number" name='commission' onChange={handleInputChange}></input>

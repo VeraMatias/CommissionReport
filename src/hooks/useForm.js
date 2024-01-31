@@ -25,10 +25,16 @@ export const useForm = () =>{
             });
         }
         else{
-            if (name === 'amount' || name === 'iva' || name === 'commission'){
+            if (name === 'amount' || name === 'commission'){
                 setDataForm({
                     ...dataForm,
                     [name]: parseInt(value),
+                });
+            }
+            else if (name === 'IVA'){
+                setDataForm({
+                    ...dataForm,
+                    [name]: parseFloat(value),
                 });
             }
             else{
