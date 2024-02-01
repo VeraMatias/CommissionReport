@@ -24,13 +24,13 @@ export const useForm = () =>{
             });
         }
         else{
-            if (name === 'amount' || name === 'commission'){
+            if (name === 'amount'){
                 setDataForm({
                     ...dataForm,
                     [name]: parseInt(value),
                 });
             }
-            else if (name === 'IVA'){
+            else if (name === 'IVA' || name === 'commission'){
                 setDataForm({
                     ...dataForm,
                     [name]: parseFloat(value),

@@ -21,7 +21,7 @@ return (
             <input placeholder="IVA" class="input-field" type="text" name='IVA' onChange={handleInputChange}></input>
         </div>
         <div class="field">
-            <input placeholder="% de Comisión" class="input-field" type="number" name='commission' onChange={handleInputChange}></input>
+            <input placeholder="% de Comisión" class="input-field" type="text" name='commission' onChange={handleInputChange}></input>
         </div>
         <div class="field checkbox">
             <p className='checkbox-text'>Pagada?</p>
