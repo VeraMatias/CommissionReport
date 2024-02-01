@@ -4,6 +4,7 @@ import './OrderForm.css'
 const OrderForm = () =>{
 
     const { handleInputChange, handleCreate } = useForm()
+    
 return (
     <form class="order-form" id='order-form' onSubmit={handleCreate('orders')}>
         <p className='heading'>Nueva Venta</p>

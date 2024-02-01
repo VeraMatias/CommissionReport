@@ -2,11 +2,10 @@ import { useState } from 'react'
 import { Timestamp } from 'firebase/firestore';
 import { useFirestore } from './useFirestore';
 
-
 export const useForm = () =>{
 
     const [dataForm, setDataForm] = useState()
-    const { sendDocument } = useFirestore()
+    const { sendDocument, updateOverview } = useFirestore()
 
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -48,6 +47,19 @@ export const useForm = () =>{
 
     const handleCreate = (nameCollection) => (e) => {
         e.preventDefault();
+        if (nameCollection === 'paycheck'){
+            updateOverview('balance', false, dataForm.amount)
+        }
+        else if (nameCollection === 'orders'){
+            const commissionAmount = ((dataForm.amount/(dataForm.IVA/100+1))*dataForm.commission/100); 
+            
+            dataForm.paid ? 
+                updateOverview('balance', true, commissionAmount)
+            :
+                updateOverview('pending', true, commissionAmount)
+
+            updateOverview('sales', true, dataForm.amount)
+        }
         sendDocument(nameCollection, dataForm)
         window.history.back()
     };

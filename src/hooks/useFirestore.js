@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc, getDocs, doc, updateDoc} from "firebase/firestore"
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, getDoc} from "firebase/firestore"
 
 export const useFirestore = () =>{
 
@@ -14,11 +14,17 @@ export const useFirestore = () =>{
             .catch((error) => console.error('Error al agregar documento: ', error));
     }
 
-    const updateOrder = () => {
+    const updateOverview = (fieldName, add, value) => {
         const db = getFirestore();
-        const orderDoc = doc(db, 'overview', 'cSs3XCWrU37dhSsNWzyr')
+        const overviewDoc = doc(db, 'overview', process.env.REACT_APP_OVERVIEW_DOCUMENT)
 
-        updateDoc(orderDoc, {balance: 150000})
+        getDoc(overviewDoc).then((snapshot) =>{
+            const currentFieldValue = snapshot.data()?.[fieldName]
+            add ? 
+                updateDoc(overviewDoc, {[fieldName]: (currentFieldValue + value)})
+            :
+                updateDoc(overviewDoc, {[fieldName]: (currentFieldValue - value)})
+        })
     }
 
     const getCollection = (nameCollection, setItems) =>{
@@ -33,5 +39,5 @@ export const useFirestore = () =>{
         })
     }
 
-    return {sendDocument, updateOrder, getCollection}
+    return {sendDocument, updateOverview, getCollection}
 }
