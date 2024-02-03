@@ -43,6 +43,7 @@
     right: -75px;
     border-radius: 50%;
     transition: all .5s ease;
+    cursor: pointer;
 }
 
 .paid{

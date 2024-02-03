@@ -27,6 +27,15 @@ export const useFirestore = () =>{
         })
     }
 
+    const updatePaidOrder = (idDoc, value, setOrderCard) => {
+        const db = getFirestore();
+        const orderDoc = doc(db, 'orders', idDoc)
+        updateDoc(orderDoc, { paid: value })
+
+        getDoc(orderDoc).then((snapshot) =>{ 
+            setOrderCard({id: snapshot.id, ...snapshot.data()}) })
+    }
+
     const getCollection = (nameCollection, setItems) =>{
         const db = getFirestore();
         const itemsCollection = collection(db,nameCollection);
@@ -39,5 +48,5 @@ export const useFirestore = () =>{
         })
     }
 
-    return {sendDocument, updateOverview, getCollection}
+    return {sendDocument, updateOverview, getCollection, updatePaidOrder}
 }

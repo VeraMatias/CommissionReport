@@ -21,12 +21,7 @@ const OrdersContainer =  () => {
             orders.map(order =>(
             <OrderCard 
             key={order.id} 
-            paid={order.paid} 
-            CPQ={order.cpq} 
-            invoice={order.invoice} 
-            amount={order.amount} 
-            IVA={order.IVA} 
-            commission={order.commission}/>))
+            order={order}/>))
             : 
             null}
         </div>
