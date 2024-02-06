@@ -14,6 +14,7 @@ const PaycheckContainer =  () => {
     useEffect(() =>{
         getCollection('paycheck', (data) => {
             const sortedPaychecks = data.sort((a, b) => b.date - a.date);
+            console.log(sortedPaychecks)
             setPaychecks(sortedPaychecks);
         });
     },[])

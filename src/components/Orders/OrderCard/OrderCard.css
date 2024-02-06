@@ -14,11 +14,17 @@
     position: relative;
 }
 
+.card-header{
+    display: flex;
+    gap: 1rem;
+}
+
 .card-title {
     margin: 0 0 25px;
     font-weight: 600;
     font-size: 20px;
     color: #FFF;
+    margin-right: 50px;
 }
 
 .cart-info{
@@ -43,15 +49,18 @@
     right: -75px;
     border-radius: 50%;
     transition: all .5s ease;
-    cursor: pointer;
 }
 
-.paid{
+.green{
     background-color: #3ecd5e;
 }
 
-.unpaid{
+.yellow{
     background-color: #f9b234;
+}
+
+.red{
+    background-color: #f93434;
 }
 
 .edit{
