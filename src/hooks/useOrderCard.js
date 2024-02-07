@@ -17,12 +17,10 @@ export const useOrderCard = (order) =>{
             updateOverview('balance', false, valordeComision)
             updateOverview('pending', true, valordeComision)
             updatePaidOrder(idDoc, false, setOrderCard)
-            //Borrar fecha en paid_date
         }else{
             updateOverview('balance', true, valordeComision)
             updateOverview('pending', false, valordeComision)
             updatePaidOrder(idDoc, true, setOrderCard)
-            //Guardar fecha en paid_date
         }
     }
 
@@ -30,10 +28,8 @@ export const useOrderCard = (order) =>{
 
         if (commisioned){
             updateCommissionedOrder(idDoc, false, setOrderCard)
-            //Borrar fecha en commissioned_date
         }else{
             updateCommissionedOrder(idDoc, true, setOrderCard)
-            //Guardar fecha en commissioned_date
         }
     }
     

@@ -27,6 +27,10 @@ return (
             <p className='checkbox-text'>Pagada?</p>
             <input  class="input-field" type="checkbox" name='paid' onChange={handleInputChange}></input>
         </div>
+        <div class="field checkbox">
+            <p className='checkbox-text'>Comisionada?</p>
+            <input  class="input-field" type="checkbox" name='commissioned' onChange={handleInputChange}></input>
+        </div>
         <button class="button3">Crear</button>
     </form>
 )

@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { Timestamp } from 'firebase/firestore';
 import { useFirestore } from './useFirestore';
+import { useGeneral } from './useGeneral';
 
 export const useForm = () =>{
 
     const [dataForm, setDataForm] = useState()
     const { sendDocument, updateOverview } = useFirestore()
+    const { getCurrentTimeStamp } = useGeneral()
 
     const handleInputChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -14,7 +16,9 @@ export const useForm = () =>{
             setDataForm({
             ...dataForm,
             [name]: checked,
+            [`${name}_date`]: checked ? getCurrentTimeStamp() : null,
             });
+            console.log(dataForm)
         } else if ( name === 'date'){
             const dateValue = new Date(value);
             const timestamp = Timestamp.fromDate(dateValue);
