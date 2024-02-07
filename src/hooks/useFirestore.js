@@ -1,6 +1,9 @@
 import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, getDoc} from "firebase/firestore"
+import { useGeneral } from "./useGeneral"
 
 export const useFirestore = () =>{
+
+    const { getCurrentTimeStamp } = useGeneral()
 
     const sendDocument = (nameCollection, data) => {
         const document = {
@@ -32,6 +35,8 @@ export const useFirestore = () =>{
         const orderDoc = doc(db, 'orders', idDoc)
         updateDoc(orderDoc, { paid: value })
 
+        value ? updateDoc(orderDoc, { paid_date: getCurrentTimeStamp()}) : updateDoc(orderDoc, { paid_date: null})
+
         getDoc(orderDoc).then((snapshot) =>{ 
             setOrderCard({id: snapshot.id, ...snapshot.data()}) })
     }
@@ -40,6 +45,8 @@ export const useFirestore = () =>{
         const db = getFirestore();
         const orderDoc = doc(db, 'orders', idDoc)
         updateDoc(orderDoc, { commissioned: value })
+
+        value ? updateDoc(orderDoc, { commissioned_date: getCurrentTimeStamp()}) : updateDoc(orderDoc, { commissioned_date: null})
 
         getDoc(orderDoc).then((snapshot) =>{ 
             setOrderCard({id: snapshot.id, ...snapshot.data()}) })

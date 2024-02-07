@@ -1,3 +1,4 @@
+import { Timestamp } from 'firebase/firestore';
 
 export const useGeneral = () =>{
     const formattedNumber = (number) =>{
@@ -25,6 +26,21 @@ export const useGeneral = () =>{
         return year;
     }
 
+    const getDay = (timestamp) =>{
+        const date = new Date(timestamp.seconds * 1000);
+        const day = date.getDate();
+        return day < 10 ? `0${day}` : day;
+    }
+
+    const getDate = (timestamp) =>{
+        return `${getDay(timestamp)}/${getMonth(timestamp)}/${getYear(timestamp)}`;
+    }
+
+    const getCurrentTimeStamp = () =>{
+        const currentDate = new Date();
+        return Timestamp.fromDate(currentDate);
+    }
+
     
-    return {formattedNumber, getMonth, getYear}
+    return {formattedNumber, getMonth, getYear, getDate, getCurrentTimeStamp}
 }
