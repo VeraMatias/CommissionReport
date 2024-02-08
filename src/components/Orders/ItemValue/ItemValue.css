@@ -1,0 +1,6 @@
+@import url('../../../styles/styles.css');
+
+.item-value {
+    font-weight: bold;
+    color: #886ab5;
+}

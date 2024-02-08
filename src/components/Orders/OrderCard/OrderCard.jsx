@@ -3,6 +3,7 @@ import './OrderCard.css'
 import { useGeneral } from '../../../hooks/useGeneral'
 import { useOrderCard } from '../../../hooks/useOrderCard'
 import ToggleSwitch from '../../General/ToggleSwitch/ToggleSwitch'
+import ItemValue from '../ItemValue/ItemValue'
 
 const OrderCard = ({order}) =>{
 
@@ -21,25 +22,10 @@ return (
 
             <div className="cart-info">
                 <div className='info-top'>
-                    <div className="cart-info-item">
-                        <span>Factura:</span>
-                        <span className="item-value"> {orderCard.invoice}</span>
-                    </div>
-
-                    <div className="cart-info-item">
-                        <span>Monto:</span>
-                        <span className="item-value"> {formattedNumber(orderCard.amount)}</span>
-                    </div>
-
-                    <div className="cart-info-item">
-                        <span>IVA:</span>
-                        <span className="item-value"> % {orderCard.IVA}</span>
-                    </div>
-
-                    <div className="cart-info-item">
-                        <span>Comisión:</span>
-                        <span className="item-value"> %{orderCard.commission} - {formattedNumber(calculateCommission(orderCard))}</span>
-                    </div>
+                    <ItemValue text={'Factura:'} value={orderCard.invoice}/>
+                    <ItemValue text={'Monto:'} value={formattedNumber(orderCard.amount)}/>
+                    <ItemValue text={'IVA:'} value={`% ${orderCard.IVA}`}/>
+                    <ItemValue text={'Comisión:'} value={`% ${orderCard.commission} - ${formattedNumber(calculateCommission(orderCard))}`}/>
                 </div>
                 
                 <div className="info-bottom">
