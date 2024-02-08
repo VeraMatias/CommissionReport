@@ -44,6 +44,15 @@ return (
                 
                 <div className="info-bottom">
                     <div className="cart-info-item">
+                        <span>Creada: </span>
+                        <span className="item-value">
+                            {orderCard.created_date != null ?
+                                    getDate(orderCard.created_date)
+                            : null} 
+                        </span>
+                    </div>
+
+                    <div className="cart-info-item">
                         <span>Pagada: </span>
                         <span className="item-value">
                             {orderCard.paid_date != null ?

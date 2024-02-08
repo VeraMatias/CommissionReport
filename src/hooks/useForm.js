@@ -6,7 +6,7 @@ import { useGeneral } from './useGeneral';
 export const useForm = () =>{
 
     const [dataForm, setDataForm] = useState()
-    const { sendDocument, updateOverview } = useFirestore()
+    const { sendDocument, updateOverview, updateCreatedDateOrder } = useFirestore()
     const { getCurrentTimeStamp } = useGeneral()
 
     const handleInputChange = (e) => {
@@ -51,21 +51,25 @@ export const useForm = () =>{
 
     const handleCreate = (nameCollection) => (e) => {
         e.preventDefault();
-        if (nameCollection === 'paycheck'){
-            updateOverview('balance', false, dataForm.amount)
-        }
-        else if (nameCollection === 'orders'){
-            const commissionAmount = ((dataForm.amount/(dataForm.IVA/100+1))*dataForm.commission/100); 
-            
-            dataForm.paid ? 
-                updateOverview('balance', true, commissionAmount)
-            :
-                updateOverview('pending', true, commissionAmount)
 
-            updateOverview('sales', true, dataForm.amount)
-        }
         sendDocument(nameCollection, dataForm)
-        window.history.back()
+        .then((documentId) => {
+            if (nameCollection === 'paycheck'){
+                updateOverview('balance', false, dataForm.amount)
+            }
+            else if (nameCollection === 'orders'){
+                const commissionAmount = ((dataForm.amount/(dataForm.IVA/100+1))*dataForm.commission/100); 
+                
+                dataForm.paid ? 
+                    updateOverview('balance', true, commissionAmount)
+                :
+                    updateOverview('pending', true, commissionAmount)
+    
+                updateOverview('sales', true, dataForm.amount)
+                updateCreatedDateOrder(documentId, setDataForm)
+            }
+            window.history.back();
+        })
     };
 
     return {handleInputChange, handleCreate}

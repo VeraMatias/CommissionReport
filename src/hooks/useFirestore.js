@@ -6,16 +6,16 @@ export const useFirestore = () =>{
     const { getCurrentTimeStamp } = useGeneral()
 
     const sendDocument = (nameCollection, data) => {
-        const document = {
-            ...data
-        }
-
+        const document = { ...data };
         const db = getFirestore();
-        const collectionFirestore = collection(db, nameCollection)
-        addDoc(collectionFirestore, document)
-            .then((response) => console.log('Documento añadido con ID: ', response.id))
-            .catch((error) => console.error('Error al agregar documento: ', error));
-    }
+        const collectionFirestore = collection(db, nameCollection);
+        
+        return addDoc(collectionFirestore, document)
+            .then((response) => response.id) 
+            .catch((error) => {
+                throw error; 
+            });
+    };
 
     const updateOverview = (fieldName, add, value) => {
         const db = getFirestore();
@@ -52,6 +52,15 @@ export const useFirestore = () =>{
             setOrderCard({id: snapshot.id, ...snapshot.data()}) })
     }
 
+    const updateCreatedDateOrder = (idDoc, setOrderCard) => {
+        const db = getFirestore();
+        const orderDoc = doc(db, 'orders', idDoc)
+        updateDoc(orderDoc, { created_date: getCurrentTimeStamp()}) 
+
+        getDoc(orderDoc).then((snapshot) =>{ 
+            setOrderCard({id: snapshot.id, ...snapshot.data()}) })
+    }
+
     const getCollection = (nameCollection, setItems) =>{
         const db = getFirestore();
         const itemsCollection = collection(db,nameCollection);
@@ -64,5 +73,5 @@ export const useFirestore = () =>{
         })
     }
 
-    return {sendDocument, updateOverview, getCollection, updatePaidOrder, updateCommissionedOrder}
+    return {sendDocument, updateOverview, getCollection, updatePaidOrder, updateCommissionedOrder, updateCreatedDateOrder}
 }
