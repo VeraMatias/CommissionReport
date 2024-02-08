@@ -19,7 +19,7 @@ return (
                 <ToggleSwitch isChecked={orderCard.paid} onClick={() => handlePaidChange(orderCard.paid, orderCard.id)} name={'Pagada'}/>
                 <ToggleSwitch isChecked={orderCard.commissioned} onClick={() => handleCommissionedChange(orderCard.commissioned, orderCard.id)} name={'Comisionada'}/>
             </div>
-            <div className= {(orderCard.paid && orderCard.commissioned) ? "color-status green" : orderCard.paid ? "color-status yellow" : "color-status red" } ></div>
+            <div className= {(orderCard.paid && orderCard.commissioned) ? "color-status green2" : orderCard.paid ? "color-status yellow" : "color-status red" } ></div>
 
             <div className="cart-info">
                 <div className='info-top'>
