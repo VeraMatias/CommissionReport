@@ -4,10 +4,11 @@ import { useGeneral } from '../../../hooks/useGeneral'
 import { useOrderCard } from '../../../hooks/useOrderCard'
 import ToggleSwitch from '../../General/ToggleSwitch/ToggleSwitch'
 import ItemValue from '../ItemValue/ItemValue'
+import ItemDate from '../ItemDate/ItemDate'
 
 const OrderCard = ({order}) =>{
 
-    const { formattedNumber, getDate } = useGeneral()
+    const { formattedNumber } = useGeneral()
     const {orderCard, calculateCommission, handlePaidChange, handleCommissionedChange} = useOrderCard(order)
 
 return (
@@ -29,32 +30,9 @@ return (
                 </div>
                 
                 <div className="info-bottom">
-                    <div className="cart-info-item">
-                        <span>Creada: </span>
-                        <span className="item-value">
-                            {orderCard.created_date != null ?
-                                    getDate(orderCard.created_date)
-                            : null} 
-                        </span>
-                    </div>
-
-                    <div className="cart-info-item">
-                        <span>Pagada: </span>
-                        <span className="item-value">
-                            {orderCard.paid_date != null ?
-                                getDate(orderCard.paid_date)
-                            : null}                        
-                        </span>
-                    </div>
-
-                    <div className="cart-info-item">
-                        <span>Comisionada: </span>
-                        <span className="item-value">
-                            {orderCard.commissioned_date != null ?
-                                    getDate(orderCard.commissioned_date)
-                            : null} 
-                        </span>
-                    </div>
+                    <ItemDate text={'Creada:'} value={orderCard.created_date}/>
+                    <ItemDate text={'Pagada:'} value={orderCard.paid_date}/>
+                    <ItemDate text={'Comisionada:'} value={orderCard.commissioned_date}/>
                 </div>
             </div>
         </div>
