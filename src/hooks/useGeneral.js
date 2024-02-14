@@ -2,8 +2,8 @@ import { Timestamp } from 'firebase/firestore';
 
 export const useGeneral = () =>{
     const formattedNumber = (number) =>{
-    
-        return(number.toLocaleString(
+        try{
+        return number.toLocaleString(
         'es-AR', 
         {
             style: 'currency',
@@ -11,8 +11,10 @@ export const useGeneral = () =>{
             minimumFractionDigits: 2, 
             maximumFractionDigits: 2, 
         })
-    )}
-
+    } catch {
+        return null
+    }
+    }
 
     const getMonth = (timestamp) => {
         const date = new Date(timestamp.seconds * 1000);

@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, getDoc} from "firebase/firestore"
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, getDoc, query} from "firebase/firestore"
 import { useGeneral } from "./useGeneral"
 
 export const useFirestore = () =>{
@@ -87,5 +87,47 @@ export const useFirestore = () =>{
         updateDoc(orderDoc, dataForm ) 
     }
 
-    return {sendDocument, updateOverview, getCollection, getDocument, updatePaidOrder, updateCommissionedOrder, updateCreatedDateOrder, updateDocument}
+    const getOverview = async (setData) =>{
+        try {
+            const db = getFirestore();
+
+            // Consulta documentos donde el campo "paid" sea verdadero, falso o no esté definido
+            const orderQuery = query(collection(db, "orders"));
+    
+            const orderSnapshot = await getDocs(orderQuery);
+            const orderDocs = orderSnapshot.docs.map(doc => doc.data());
+    
+            // Filtra los documentos según el valor de la propiedad "paid"
+            const ordersPaid = orderDocs.filter(doc => doc.paid === true);
+            const ordersNotPaid = orderDocs.filter(doc => doc.paid === false);
+            const ordersWithoutPaid = orderDocs.filter(doc => !doc.hasOwnProperty('paid'));
+        
+            const totalCommissionPaid = ordersPaid.reduce((total, order) => total + ((order.amount/(order.IVA/100+1))*order.commission/100), 700000);
+            const totalCommissionNotPaid = ordersNotPaid.reduce((total, order) => total + ((order.amount/(order.IVA/100+1))*order.commission/100), 0);
+            const totalCommissionWithoutPaid = ordersWithoutPaid.reduce((total, order) => total + ((order.amount/(order.IVA/100+1))*order.commission/100), 0);
+            const totalAmountSales = ordersPaid
+                                    .concat(ordersNotPaid, ordersWithoutPaid)
+                                    .reduce((total, order) => total + order.amount, 0);
+
+            // Consulta documentos en la colección "paycheck"
+            const paycheckQuery = query(collection(db, "paycheck"));
+
+            const paycheckSnapshot = await getDocs(paycheckQuery);
+            const paycheckDocs = paycheckSnapshot.docs.map(doc => doc.data());
+
+            // Calcula la suma de los valores de "amount" en los documentos de "paycheck"
+            const totalAmountPaycheck = paycheckDocs.reduce((total, paycheck) => total + paycheck.amount, 0);
+
+            // Guarda los valores en el estado
+            setData({
+                balance: totalCommissionPaid -totalAmountPaycheck,
+                pending: totalCommissionNotPaid + totalCommissionWithoutPaid,
+                sales: totalAmountSales
+            });
+    } catch (error) {
+        console.error('Error al obtener datos de pedidos:', error);
+    }
+};
+
+    return {sendDocument, updateOverview, getCollection, getDocument, updatePaidOrder, updateCommissionedOrder, updateCreatedDateOrder, updateDocument, getOverview}
 }

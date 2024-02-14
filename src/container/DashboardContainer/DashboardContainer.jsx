@@ -7,21 +7,22 @@ import { useGeneral } from '../../hooks/useGeneral'
 
 const DashboardContainer =  () => {
 
-    const [data, setData] = useState()
-    const { getCollection } = useFirestore()
+    const [data, setData] = useState({ ordersPaid: [], ordersNotPaid: [], ordersWithoutPaid: [] });
+
+    const { getOverview } = useFirestore()
     const { formattedNumber } = useGeneral()
 
     useEffect(() =>{
-        getCollection('overview', setData);
+        getOverview(setData);
     },[])
 
     return(
         <div className="container-dashboard">
             {data ? 
             <>
-                <KPICard color={'purple'} value={formattedNumber(data[0].balance)} text={'Balance de Comisiones'}/>
-                <KPICard color={'grey-dark'} value={formattedNumber(data[0].pending)} text={'Comisiones Pendientes'}/>
-                <KPICard color={'green'} value={formattedNumber(data[0].sales)} text={'Ventas Totales'}/>
+                <KPICard color={'purple'} value={formattedNumber((data.balance))} text={'Balance de Comisiones'}/>
+                <KPICard color={'grey-dark'} value={formattedNumber((data.pending))} text={'Comisiones Pendientes'}/>
+                <KPICard color={'green'} value={formattedNumber((data.sales))} text={'Ventas Totales'}/>
             </>
             :
             null}
