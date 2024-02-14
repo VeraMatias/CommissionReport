@@ -73,5 +73,19 @@ export const useFirestore = () =>{
         })
     }
 
-    return {sendDocument, updateOverview, getCollection, updatePaidOrder, updateCommissionedOrder, updateCreatedDateOrder}
+    const getDocument = (nameCollection, idDoc, setDataForm) =>{
+        const db = getFirestore();
+        const orderDoc = doc(db, nameCollection, idDoc)
+
+        getDoc(orderDoc).then((snapshot) =>{ 
+            setDataForm({id: snapshot.id, ...snapshot.data()}) })
+    }
+
+    const updateDocument = (nameCollection, itemID, dataForm) => {
+        const db = getFirestore();
+        const orderDoc = doc(db, nameCollection, itemID)
+        updateDoc(orderDoc, dataForm ) 
+    }
+
+    return {sendDocument, updateOverview, getCollection, getDocument, updatePaidOrder, updateCommissionedOrder, updateCreatedDateOrder, updateDocument}
 }

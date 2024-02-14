@@ -6,6 +6,8 @@ import ToggleSwitch from '../../General/ToggleSwitch/ToggleSwitch'
 import ItemValue from '../ItemValue/ItemValue'
 import ItemDate from '../ItemDate/ItemDate'
 
+import { Link } from 'react-router-dom'
+
 const OrderCard = ({order}) =>{
 
     const { formattedNumber } = useGeneral()
@@ -15,7 +17,13 @@ return (
     <div className="order-card">
         <div className="order-card-content">
             <div className="card-header">
-                <h2 className="card-title">{orderCard.cpq} <i className='bx bx-pencil edit' ></i></h2>
+                <h2 className="card-title">
+                    {orderCard.cpq} 
+                    <Link to={`/orders/edit/${orderCard.id}`} >
+                        <i className='bx bx-pencil edit' ></i>
+                    </Link>
+                    
+                </h2>
                 <ToggleSwitch isChecked={orderCard.paid} onClick={() => handlePaidChange(orderCard.paid, orderCard.id)} name={'Pagada'}/>
                 <ToggleSwitch isChecked={orderCard.commissioned} onClick={() => handleCommissionedChange(orderCard.commissioned, orderCard.id)} name={'Comisionada'}/>
             </div>

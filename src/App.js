@@ -9,6 +9,7 @@ import OrdersContainer from './container/OrdersContainer/OrdersContainer';
 import PaycheckContainer from './container/PaycheckContainer/PaycheckContainer';
 import OrderFormContainer from './container/OrderFormContainer/OrderFormContainer';
 import PaycheckFormContainer from './container/PaycheckFormContainer/PaycheckFormContainer';
+import EditOrder from './components/Orders/EditOrder/EditOrder';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path = "/orders/create" element={<Wrapper children = {<OrderFormContainer/>} />}/>
         <Route path = "/paycheck" element={<Wrapper children = {<PaycheckContainer/>} />}/>
         <Route path = "/paycheck/create" element={<Wrapper children = {<PaycheckFormContainer/>} />}/>
+        <Route path = "/orders/edit/:itemID" element={<Wrapper children = {<EditOrder/>} />}/>
       </Routes>
     </BrowserRouter>
     </>

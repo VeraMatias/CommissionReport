@@ -6,7 +6,7 @@ import { useGeneral } from './useGeneral';
 export const useForm = () =>{
 
     const [dataForm, setDataForm] = useState()
-    const { sendDocument, updateOverview, updateCreatedDateOrder } = useFirestore()
+    const { sendDocument, updateOverview, updateCreatedDateOrder, updateDocument } = useFirestore()
     const { getCurrentTimeStamp } = useGeneral()
 
     const handleInputChange = (e) => {
@@ -72,5 +72,11 @@ export const useForm = () =>{
         })
     };
 
-    return {handleInputChange, handleCreate}
+    const handleUpdate = (nameCollection, itemID) => (e) => {
+        e.preventDefault();
+        updateDocument(nameCollection, itemID, dataForm)
+        window.history.back();
+    }
+
+    return {handleInputChange, handleCreate, setDataForm, dataForm, handleUpdate}
 }

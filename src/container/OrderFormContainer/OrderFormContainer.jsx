@@ -1,7 +1,7 @@
 import OrderForm from '../../components/Orders/OrderForm/OrderForm'
 import './OrderFormContainer.css'
 
-const OrderFormContainer = () => {
+const OrderFormContainer = ({}) => {
     return(
         <div className="order-form-container">
             <OrderForm />
