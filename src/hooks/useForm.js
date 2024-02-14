@@ -6,7 +6,7 @@ import { useGeneral } from './useGeneral';
 export const useForm = () =>{
 
     const [dataForm, setDataForm] = useState()
-    const { sendDocument, updateOverview, updateCreatedDateOrder, updateDocument } = useFirestore()
+    const { sendDocument, updateCreatedDateOrder, updateDocument } = useFirestore()
     const { getCurrentTimeStamp } = useGeneral()
 
     const handleInputChange = (e) => {
@@ -54,18 +54,7 @@ export const useForm = () =>{
 
         sendDocument(nameCollection, dataForm)
         .then((documentId) => {
-            if (nameCollection === 'paycheck'){
-                updateOverview('balance', false, dataForm.amount)
-            }
-            else if (nameCollection === 'orders'){
-                const commissionAmount = ((dataForm.amount/(dataForm.IVA/100+1))*dataForm.commission/100); 
-                
-                dataForm.paid ? 
-                    updateOverview('balance', true, commissionAmount)
-                :
-                    updateOverview('pending', true, commissionAmount)
-    
-                updateOverview('sales', true, dataForm.amount)
+            if (nameCollection === 'orders'){
                 updateCreatedDateOrder(documentId, setDataForm)
             }
             window.history.back();

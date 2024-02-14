@@ -12,7 +12,7 @@ export const useGeneral = () =>{
             maximumFractionDigits: 2, 
         })
     } catch {
-        return null
+        return '$ 0'
     }
     }
 

@@ -22,7 +22,6 @@ return (
                     <Link to={`/orders/edit/${orderCard.id}`} >
                         <i className='bx bx-pencil edit' ></i>
                     </Link>
-                    
                 </h2>
                 <ToggleSwitch isChecked={orderCard.paid} onClick={() => handlePaidChange(orderCard.paid, orderCard.id)} name={'Pagada'}/>
                 <ToggleSwitch isChecked={orderCard.commissioned} onClick={() => handleCommissionedChange(orderCard.commissioned, orderCard.id)} name={'Comisionada'}/>

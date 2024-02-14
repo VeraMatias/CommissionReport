@@ -17,19 +17,6 @@ export const useFirestore = () =>{
             });
     };
 
-    const updateOverview = (fieldName, add, value) => {
-        const db = getFirestore();
-        const overviewDoc = doc(db, 'overview', process.env.REACT_APP_OVERVIEW_DOCUMENT)
-
-        getDoc(overviewDoc).then((snapshot) =>{
-            const currentFieldValue = snapshot.data()?.[fieldName]
-            add ? 
-                updateDoc(overviewDoc, {[fieldName]: (currentFieldValue + value)})
-            :
-                updateDoc(overviewDoc, {[fieldName]: (currentFieldValue - value)})
-        })
-    }
-
     const updatePaidOrder = (idDoc, value, setOrderCard) => {
         const db = getFirestore();
         const orderDoc = doc(db, 'orders', idDoc)
@@ -129,5 +116,5 @@ export const useFirestore = () =>{
     }
 };
 
-    return {sendDocument, updateOverview, getCollection, getDocument, updatePaidOrder, updateCommissionedOrder, updateCreatedDateOrder, updateDocument, getOverview}
+    return {sendDocument, getCollection, getDocument, updatePaidOrder, updateCommissionedOrder, updateCreatedDateOrder, updateDocument, getOverview}
 }
