@@ -10,8 +10,15 @@ const OrdersContainer =  () => {
     const [orders, setOrders] = useState()
     const { getCollection } = useFirestore()
 
+    // useEffect(() =>{
+    //     getCollection('orders',setOrders)
+    // },[])
+
     useEffect(() =>{
-        getCollection('orders',setOrders)
+        getCollection('orders', (data) => {
+            const sortedOrders = data.sort((a, b) => b.created_date - a.created_date);
+            setOrders(sortedOrders);
+        });
     },[])
 
     return( 
