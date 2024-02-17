@@ -1,9 +1,10 @@
+import './PaycheckContainer.css'
 import { useState, useEffect } from 'react'
 import ButtonNew from '../../components/General/ButtonNew/ButtonNew'
 import PaycheckCard from '../../components/Paycheck/PaycheckCard/PaycheckCard'
-import './PaycheckContainer.css'
 import { useFirestore } from '../../hooks/useFirestore'
 import { useGeneral } from '../../hooks/useGeneral'
+import { Link } from 'react-router-dom'
 
 const PaycheckContainer =  () => {
 
@@ -24,11 +25,13 @@ const PaycheckContainer =  () => {
                 <div className="container-paycheck">
                     {paychecks ?
                     paychecks.map( paycheck => (
-                        <PaycheckCard 
-                        key={paycheck.id}
-                        month={getMonth(paycheck.date)} 
-                        year={getYear(paycheck.date)} 
-                        amount={paycheck.amount}/>
+                        <Link to={`/paycheck/edit/${paycheck.id}`}>
+                            <PaycheckCard 
+                            key={paycheck.id}
+                            month={getMonth(paycheck.date)} 
+                            year={getYear(paycheck.date)} 
+                            amount={paycheck.amount}/>
+                        </Link>
                     ))
                     :
                     null}

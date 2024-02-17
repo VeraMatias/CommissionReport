@@ -1,4 +1,3 @@
-
 import './App.css';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -10,6 +9,7 @@ import PaycheckContainer from './container/PaycheckContainer/PaycheckContainer';
 import OrderFormContainer from './container/OrderFormContainer/OrderFormContainer';
 import PaycheckFormContainer from './container/PaycheckFormContainer/PaycheckFormContainer';
 import EditOrder from './components/Orders/EditOrder/EditOrder';
+import EditPaycheck from './components/Paycheck/EditPaycheck/EditPaycheck';
 
 function App() {
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route path = "/paycheck" element={<Wrapper children = {<PaycheckContainer/>} />}/>
         <Route path = "/paycheck/create" element={<Wrapper children = {<PaycheckFormContainer/>} />}/>
         <Route path = "/orders/edit/:itemID" element={<Wrapper children = {<EditOrder/>} />}/>
+        <Route path = "/paycheck/edit/:itemID" element={<Wrapper children = {<EditPaycheck/>} />}/>
       </Routes>
     </BrowserRouter>
     </>
