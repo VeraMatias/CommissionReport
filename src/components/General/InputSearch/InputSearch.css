@@ -1,0 +1,37 @@
+@import url('../../../styles/styles.css');
+
+.container-search {
+    position: relative;
+    width: 12rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.input-search{
+    height: 2.2rem;
+    width: 100%;
+    border: 0;
+    font-size: 1rem;
+    padding: 0 1.6rem;
+    border-radius: .7rem;
+    background-color: #121212;
+    color: white;
+}
+
+.input-search:focus{
+    border: 1px solid white;
+    outline: none;
+    box-shadow: 0 0 5px white;
+}
+
+.input-search::placeholder { 
+    color: white; 
+    font-size: 1rem;
+}
+
+.search-title{
+    color: rgba(245, 245, 245, 0.795);
+    font-size: 12px;
+}

@@ -1,0 +1,49 @@
+@import url('../../../styles/styles.css');
+
+.container-date-search{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.container-search-input{
+    display: flex;
+    gap: 5px;
+}
+
+.input-date-search {
+    height: 2.2rem;
+    border: 0;
+    font-size: 1rem;
+    padding: 0 1.6rem;
+    border-radius: .7rem;
+    background-color: #121212;
+    color: white;
+}
+
+.input-date-search:focus{
+    border: 1px solid white;
+    outline: none;
+    box-shadow: 0 0 5px white;
+}
+
+.button-date-search{
+    cursor: pointer;
+    background-color:  #121212;
+    border: 0px;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    height: 2.2rem;
+    width: 2.2rem;
+}
+
+.button-date-search:hover{
+    color: #886ab5;
+}
+
+.search-title{
+    color: rgba(245, 245, 245, 0.795);
+    font-size: 12px;
+}

@@ -7,3 +7,9 @@
     align-items: center;
     gap: 2rem;
 }
+
+.container-filter{
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+}
