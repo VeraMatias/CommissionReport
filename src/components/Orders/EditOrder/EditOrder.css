@@ -1,5 +1,11 @@
 @import url('../../../styles/styles.css');
 
+.order-edit-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .text-edit {
     font-size: 15px;
     color: #886ab5;
