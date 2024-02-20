@@ -10,7 +10,7 @@
 .order-card-content {
     display: block;
     padding: 20px 20px;
-    background-color: #121212;
+    background-color: var(--clr-black);
     position: relative;
 }
 
@@ -78,5 +78,5 @@
 }
 
 .edit:hover{
-    color: #886ab5;
+    color: var(--clr-purple);
 }

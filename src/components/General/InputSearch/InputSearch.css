@@ -16,7 +16,7 @@
     font-size: 1rem;
     padding: 0 1.6rem;
     border-radius: .7rem;
-    background-color: #121212;
+    background-color: var(--clr-black);
     color: white;
 }
 

@@ -47,7 +47,7 @@
 }
 
 .purple {
-    background: #886ab5;
+    background: var(--clr-purple);
     color: #fff;
 }
 

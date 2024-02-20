@@ -18,7 +18,7 @@
     font-size: 1rem;
     padding: 0 1.6rem;
     border-radius: .7rem;
-    background-color: #121212;
+    background-color: var(--clr-black);
     color: white;
 }
 
@@ -30,7 +30,7 @@
 
 .button-date-search{
     cursor: pointer;
-    background-color:  #121212;
+    background-color:  var(--clr-black);
     border: 0px;
     color: white;
     font-size: 20px;
@@ -40,7 +40,7 @@
 }
 
 .button-date-search:hover{
-    color: #886ab5;
+    color: var(--clr-purple);
 }
 
 .search-title{

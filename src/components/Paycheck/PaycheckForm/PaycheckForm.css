@@ -8,7 +8,7 @@
     padding-left: 2em;
     padding-right: 2em;
     padding-bottom: 0.4em;
-    background-color: #171717;
+    background-color: var(--clr-black);
     border-radius: 25px;
     width: 350px;
 }
@@ -23,7 +23,7 @@
 .field {
     border-radius: 25px;
     padding: 0.6em;
-    background-color: #171717;
+    background-color: var(--clr-black);
     box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
 }
 
@@ -56,7 +56,7 @@
 }
 
 .button3:hover {
-    background-color: #886ab5;
+    background-color: var(--clr-purple);
     color: black
 }
 

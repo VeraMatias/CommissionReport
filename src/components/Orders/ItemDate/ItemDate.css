@@ -2,5 +2,5 @@
 
 .item-date {
     font-weight: bold;
-    color: #886ab5;
+    color: var(--clr-purple);
 }

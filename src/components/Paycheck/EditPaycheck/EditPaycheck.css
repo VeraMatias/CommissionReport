@@ -8,6 +8,6 @@
 
 .text-edit {
     font-size: 15px;
-    color: #886ab5;
+    color: var(--clr-purple);
     margin-left: 12px;
 }
