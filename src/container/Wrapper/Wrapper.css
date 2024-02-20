@@ -10,3 +10,21 @@
 .container-wrapper::-webkit-scrollbar {
     display: none;
 }
+
+/*    Mobile    */
+
+/*Portrait*/
+/*Default*/
+@media (max-width: 575.98px)and (orientation:portrait) {
+    .container-wrapper{
+        margin-top: 0;
+    }
+}
+
+/*Landscape*/
+@media (min-width: 576px) and (max-width: 991.98px) and (orientation:landscape) {
+    .container-wrapper{
+        margin-top: 0;
+        height: 75vh;
+    }
+}
