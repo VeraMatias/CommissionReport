@@ -1,5 +1,11 @@
 @import url('../../styles/styles.css');
 
+.container-filter{
+    width: 80%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
 .container-orders {
     width: 100%;
     display: flex;
@@ -8,8 +14,21 @@
     gap: 2rem;
 }
 
-.container-filter{
-    width: 80%;
-    display: flex;
-    justify-content: space-evenly;
+/*    Mobile    */
+
+/*Portrait*/
+/*Default*/
+@media (max-width: 575.98px)and (orientation:portrait) {
+    .container-filter{
+        flex-direction: column;
+        gap: .5rem;
+        align-items: center;
+    }
+}
+
+/*Landscape*/
+@media (min-width: 576px) and (max-width: 991.98px) and (orientation:landscape) {
+    .container-filter{
+        width: 100%;
+    }
 }
