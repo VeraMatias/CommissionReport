@@ -89,7 +89,7 @@ export const useFirestore = () =>{
             const ordersNotPaid = orderDocs.filter(doc => doc.paid === false);
             const ordersWithoutPaid = orderDocs.filter(doc => !doc.hasOwnProperty('paid'));
         
-            const totalCommissionPaid = ordersPaid.reduce((total, order) => total + ((order.amount/(order.IVA/100+1))*order.commission/100), 700000);
+            const totalCommissionPaid = ordersPaid.reduce((total, order) => total + ((order.amount/(order.IVA/100+1))*order.commission/100), parseInt(process.env.REACT_APP_INITIAL_VALUE));
             const totalCommissionNotPaid = ordersNotPaid.reduce((total, order) => total + ((order.amount/(order.IVA/100+1))*order.commission/100), 0);
             const totalCommissionWithoutPaid = ordersWithoutPaid.reduce((total, order) => total + ((order.amount/(order.IVA/100+1))*order.commission/100), 0);
             const totalAmountSales = ordersPaid
