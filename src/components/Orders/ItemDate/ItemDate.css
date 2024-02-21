@@ -4,3 +4,15 @@
     font-weight: bold;
     color: var(--clr-purple);
 }
+
+/*    Mobile    */
+
+/*Portrait*/
+/*Default*/
+@media (max-width: 575.98px)and (orientation:portrait) {
+    .container-item-date{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+}

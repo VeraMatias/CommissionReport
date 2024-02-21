@@ -3,7 +3,7 @@ import './ItemValue.css'
 const ItemValue = ({text, value}) =>{
 
 return (
-    <div>
+    <div className='container-item-value'>
         <span>{text}</span>
         <span className="item-value"> {value}</span>
     </div>

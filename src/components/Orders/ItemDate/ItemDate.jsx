@@ -5,7 +5,7 @@ const ItemDate = ({text, value}) =>{
 
     const { getDate } = useGeneral()
 return (
-    <div >
+    <div className='container-item-date'>
         <span>{text} </span>
         <span className="item-date">
             {value != null ?
