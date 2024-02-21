@@ -15,3 +15,24 @@
     grid-column-gap: 15px;
     grid-row-gap: 30px;
 }
+
+/*    Mobile    */
+
+/*Portrait*/
+/*Default*/
+@media (max-width: 575.98px)and (orientation:portrait) {
+    .container-paycheck {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/*Landscape*/
+@media (min-width: 576px) and (max-width: 991.98px) and (orientation:landscape) {
+    .container-paycheck {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-column-gap: 15px;
+        grid-row-gap: 30px;
+    }
+}
