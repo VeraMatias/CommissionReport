@@ -80,3 +80,38 @@
 .edit:hover{
     color: var(--clr-purple);
 }
+
+/*    Mobile    */
+
+/*Portrait*/
+/*Default*/
+@media (max-width: 575.98px)and (orientation:portrait) {
+    .order-card {
+        width: 95%;
+    }
+
+    .card-header{
+        gap: 0;
+    }
+
+    .color-status {
+        z-index: 0;
+        position: absolute;
+        top: -80px;
+        right: -80px;
+    }
+}
+
+/*Landscape*/
+@media (min-width: 576px) and (max-width: 991.98px) and (orientation:landscape) {
+    .order-card {
+        width: 85%;
+    }
+
+    .color-status {
+        z-index: 0;
+        position: absolute;
+        top: -80px;
+        right: -80px;
+    }
+}
