@@ -13,9 +13,14 @@
     width: 350px;
 }
 
+.form-container-field{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .heading {
     text-align: center;
-    margin: 2em 2em 1.5em 2em;
     color: white;
     font-size: 1.2em;
 }
@@ -71,3 +76,36 @@ input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none; 
     margin: 0; 
 }
+
+/*    Mobile    */
+
+/*Portrait*/
+/*Default*/
+@media (max-width: 575.98px)and (orientation:portrait) {
+    .form-container-field {
+        gap: 10px;
+    }
+}
+
+/*Landscape*/
+@media (min-width: 576px) and (max-width: 991.98px) and (orientation:landscape) {
+    .order-form{
+        gap: 10px;
+        width: 90%;
+        padding-bottom: 0;
+    }
+
+    .form-container-field {
+        display: grid; 
+        grid-template-columns: 1fr 1fr 1fr 1fr; 
+        grid-template-rows: 1fr 1fr; 
+        gap: 10px; 
+        grid-template-areas: 
+        ". . . ."
+        ". . . ."; 
+    }
+    .field {
+        padding: 0;
+    }
+}
+
