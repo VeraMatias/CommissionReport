@@ -1,0 +1,34 @@
+@import url('../../styles/styles.css');
+
+.container-footer{
+    background-color: var(--clr-black);
+    height: 3rem;
+    display: flex;
+    justify-content: space-around;
+    color: whitesmoke;
+}
+
+.main-information, .social-information{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+}
+
+.main-information{
+    gap: 0rem;
+}
+
+.information-logo{
+    height: 2.6rem;
+}
+
+.social-icon{
+    color: white;
+    font-size: 1.4rem;
+}
+
+.social-icon:hover{
+    color: var(--clr-purple);
+    transform: scale(1.1) ;
+}

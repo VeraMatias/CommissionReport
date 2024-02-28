@@ -4,10 +4,9 @@ nav {
     width: var(--menu-width);
     display: flex;
     justify-content: space-evenly;
-    position: relative;
     z-index: 2;
     margin: 0px auto;
-    top: 3em;
+    height: 5.5rem;
 }
 
 /*    Mobile    */

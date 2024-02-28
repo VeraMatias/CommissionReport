@@ -10,6 +10,7 @@ import OrderFormContainer from './container/OrderFormContainer/OrderFormContaine
 import PaycheckFormContainer from './container/PaycheckFormContainer/PaycheckFormContainer';
 import EditOrder from './components/Orders/EditOrder/EditOrder';
 import EditPaycheck from './components/Paycheck/EditPaycheck/EditPaycheck';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path = "/paycheck/edit/:itemID" element={<Wrapper children = {<EditPaycheck/>} />}/>
       </Routes>
     </BrowserRouter>
+    <Footer/>
     </>
   );
 }
