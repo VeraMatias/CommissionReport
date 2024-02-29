@@ -11,6 +11,7 @@ import PaycheckFormContainer from './container/PaycheckFormContainer/PaycheckFor
 import EditOrder from './components/Orders/EditOrder/EditOrder';
 import EditPaycheck from './components/Paycheck/EditPaycheck/EditPaycheck';
 import Footer from './components/Footer/Footer';
+import StatisticsContainer from './container/StatisticsContainer/StatisticsContainer';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path = "/paycheck/create" element={<Wrapper children = {<PaycheckFormContainer/>} />}/>
         <Route path = "/orders/edit/:itemID" element={<Wrapper children = {<EditOrder/>} />}/>
         <Route path = "/paycheck/edit/:itemID" element={<Wrapper children = {<EditPaycheck/>} />}/>
+        <Route path = "/statistics" element={<Wrapper children = {<StatisticsContainer/>} />}/>
       </Routes>
     </BrowserRouter>
     <Footer/>

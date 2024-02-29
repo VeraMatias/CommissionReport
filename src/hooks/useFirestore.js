@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, getDoc, query} from "firebase/firestore"
+import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, getDoc, query, where} from "firebase/firestore"
 import { useGeneral } from "./useGeneral"
 
 export const useFirestore = () =>{
@@ -116,5 +116,95 @@ export const useFirestore = () =>{
     }
 };
 
-    return {sendDocument, getCollection, getDocument, updatePaidOrder, updateCommissionedOrder, updateCreatedDateOrder, updateDocument, getOverview}
+
+const getStatistics = async (setDataKPIs, setDataLine) => {
+    try {
+        const db = getFirestore();
+
+        // Obtener la fecha actual y la fecha hace 12 meses
+        const currentDate = new Date();
+        const twelveMonthsAgo = new Date(currentDate);
+        twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12);
+
+        // Consulta documentos en la colección "orders"
+        const orderQuery = query(
+            collection(db, "orders"),
+            where("created_date", ">=", twelveMonthsAgo)
+        );
+        const orderSnapshot = await getDocs(orderQuery);
+        const orderDocs = orderSnapshot.docs.map(doc => doc.data());
+
+        // Consulta documentos en la colección "paycheck"
+        const paycheckQuery = query(
+            collection(db, "paycheck"),
+            where("date", ">=", twelveMonthsAgo)
+        );
+        const paycheckSnapshot = await getDocs(paycheckQuery);
+        const paycheckDocs = paycheckSnapshot.docs.map(doc => doc.data());
+
+        // Obtencion de Valores KPIs
+        const totalSales = orderDocs.reduce((total, order) => total + order.amount, 0);
+        const totalPaycheck = paycheckDocs.reduce((total, paycheck) => total + paycheck.amount, 0);
+        const countSales = orderDocs.length;
+
+        // Guarda los valores en el estado
+        setDataKPIs({
+            totalSales,
+            totalPaycheck,
+            countSales
+        });
+
+        //Datos para Grafico de Lineas de Monto de Ventas
+        const salesByMonth = {};
+        orderDocs.forEach(order => {
+            const createdDate = order.created_date.toDate();
+            const month = createdDate.getMonth() + 1; 
+            const year = createdDate.getFullYear();
+            const key = `${month}-${year}`;
+            if (!salesByMonth[key]) {
+                salesByMonth[key] = 0;
+            }
+            salesByMonth[key] += order.amount;
+        });
+
+        // Crear un objeto para almacenar la cantidad de órdenes por mes
+        const countOrdersByMonth = {};
+        orderDocs.forEach(order => {
+            const createdDate = order.created_date.toDate();
+            const month = createdDate.getMonth() + 1; 
+            const year = createdDate.getFullYear(); // 
+            const key = `${month}-${year}`; 
+            if (!countOrdersByMonth[key]) {
+            countOrdersByMonth[key] = 0; 
+            }
+            countOrdersByMonth[key]++; 
+        });
+
+        //Datos para Grafico de Lineas de Paychecks
+        const paychecksByMonth = {};
+        paycheckDocs.forEach(paycheck => {
+            const createdDate = paycheck.date.toDate();
+            const month = createdDate.getMonth() + 1; 
+            const year = createdDate.getFullYear();
+            const key = `${month}-${year}`;
+            if (!paychecksByMonth[key]) {
+                paychecksByMonth[key] = 0;
+            }
+            paychecksByMonth[key] += paycheck.amount;
+        });
+
+        // Ordenar los meses por año y mes
+        const labels = Object.keys(paychecksByMonth).sort();
+        const ordersValues = labels.map(key => salesByMonth[key] ? salesByMonth[key] : 0)
+        const ordersCountValues = labels.map(key => countOrdersByMonth[key] ? countOrdersByMonth[key] : 0)
+        const paychecksValues = labels.map(key => paychecksByMonth[key] ? paychecksByMonth[key] : 0)
+
+        // Guarda los valores en el estado
+        setDataLine({labels, ordersValues, ordersCountValues, paychecksValues});
+    } catch (error) {
+        console.error('Error al obtener datos:', error);
+    }
+};
+
+    return {sendDocument, getCollection, getDocument, updatePaidOrder, updateCommissionedOrder, updateCreatedDateOrder, updateDocument, getOverview, getStatistics}
 }
