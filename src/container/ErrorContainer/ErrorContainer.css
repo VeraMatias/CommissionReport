@@ -1,0 +1,45 @@
+@import url('../../styles/styles.css');
+
+.container-error {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-img{
+    width: 30%;
+    height: 30%;
+}
+
+.error-title{
+    margin-top: -8rem;
+}
+
+/*    Mobile    */
+
+/*Portrait*/
+/*Default*/
+@media (max-width: 575.98px)and (orientation:portrait) {
+    .error-img{
+        width: 60%;
+        height: 60%;
+    }
+    
+    .error-title{
+        margin-top: -4rem;
+    }
+}
+
+/*Landscape*/
+@media (min-width: 576px) and (max-width: 991.98px) and (orientation:landscape) {
+    .error-img{
+        width: 30%;
+        height: 30%;
+        margin-top: -5rem;
+    }
+    
+    .error-title{
+        margin-top: -4rem;
+    }
+}

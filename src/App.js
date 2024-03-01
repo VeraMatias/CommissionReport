@@ -12,6 +12,7 @@ import EditOrder from './components/Orders/EditOrder/EditOrder';
 import EditPaycheck from './components/Paycheck/EditPaycheck/EditPaycheck';
 import Footer from './components/Footer/Footer';
 import StatisticsContainer from './container/StatisticsContainer/StatisticsContainer';
+import ErrorContainer from './container/ErrorContainer/ErrorContainer';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path = "/orders/edit/:itemID" element={<Wrapper children = {<EditOrder/>} />}/>
         <Route path = "/paycheck/edit/:itemID" element={<Wrapper children = {<EditPaycheck/>} />}/>
         <Route path = "/statistics" element={<Wrapper children = {<StatisticsContainer/>} />}/>
+        <Route path = "*" element={<Wrapper children={<ErrorContainer/>}/>}/>
       </Routes>
     </BrowserRouter>
     <Footer/>
